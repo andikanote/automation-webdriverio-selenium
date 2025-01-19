@@ -5,14 +5,24 @@ export const config: WebdriverIO.Config = {
         './src/tests/**/*.ts'
     ],
     exclude: [],
-    maxInstances: 10,
-    capabilities: [{
-        browserName: 'chrome',
-        'goog:chromeOptions': {
-            args: ['--headless', '--disable-gpu', '--window-size=1280,1024']
+    maxInstances: 10, // Maksimal instance yang berjalan secara paralel
+    capabilities: [
+        // Konfigurasi untuk Chrome
+        {
+            browserName: 'chrome',
+            'goog:chromeOptions': {
+                args: ['--disable-gpu', '--window-size=1280,1024'] //args: ['-headless', '--width=1280', '--height=1024']
+            }
+        },
+        // Konfigurasi untuk Firefox
+        {
+            browserName: 'firefox',
+            'moz:firefoxOptions': {
+                args: ['--width=1280', '--height=1024'] //args: ['-headless', '--width=1280', '--height=1024']
+            }
         }
-    }],
-    logLevel: 'info',
+    ],
+    logLevel: 'silent',
     bail: 0,
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
